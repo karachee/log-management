@@ -1,0 +1,1 @@
+[Swagger UI](http://localhost:8080/logManagementService/lms/v1/swagger-ui.html)

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true" name="XMLConfigTest" packages="com.karachee.lms">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ISO8601} %-5p [%t] %logger{36} %m%n"/>
+        </Console>
+        <RandomAccessFile name="LocalLog" fileName="logs/logManagementService.log" immediateFlush="true" append="true">
+            <PatternLayout>
+                <Pattern>%d{ISO8601} %-5p [%t] %logger{36} %m%n</Pattern>
+            </PatternLayout>
+        </RandomAccessFile>
+        <RollingRandomAccessFile name="TomcatLog" fileName="${sys:catalina.base}/logs/logManagementService.log"
+                                 immediateFlush="true"
+                                 append="true"
+                                 filePattern="logs/$${date:yyyy-MM}/lms-%d{yyyy-MM-dd-HH}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{ISO8601} %-5p [%t] %logger{36} %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="LocalLog"/>
+            <AppenderRef ref="TomcatLog"/>
+        </Root>
+
+        <!-- Set component initial logging levels -->
+        <Logger name="com.karachee" level="debug"/>
+        <Logger name="org.quartz.core" level="error"/>
+        <Logger name="org.springframework" level="error"/>
+        <Logger name="org.apache" level="warn"/>
+        <Logger name="org.eclipse.jetty" level="warn"/>
+        <Logger name="com.mchange" level="warn"/>
+        <Logger name="net.sf.ehcache" level="error"/>
+        <Logger name="kafka" level="warn"/>
+        <Logger name="com.mangofactory.swagger" level="warn"/>
+        <Logger name="springfox.documentation" level="info"/>
+        <Logger name="org.springframework.web.servlet.mvc" level="info"/>
+        <!-- watch transactions -->
+        <Logger name="org.springframework.orm.jpa.JpaTransactionManager" level="error"/>
+    </Loggers>
+</Configuration>
