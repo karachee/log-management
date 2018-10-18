@@ -9,7 +9,7 @@ pgAdmin 4
 
 Tools -> Restore
 
-Import Use log_db.backup
+Import log_db.backup
 
 ## Tomcat
 cp target/logManagementService##1.0.0-SNAPSHOT.war <TOMCAT_HOME>/webapps
