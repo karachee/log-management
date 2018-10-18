@@ -8,11 +8,14 @@ mvn -Dmaven.test.skip clean install
 pgAdmin 4
 
 Tools -> Restore
-Use log_db.backup
+
+Import Use log_db.backup
 
 ## Tomcat
 cp target/logManagementService##1.0.0-SNAPSHOT.war <TOMCAT_HOME>/webapps
+
 cp target/classes/log4j2.xml <TOMCAT_HOME>/lib
+
 cp target/classes/logManagementService.properties <TOMCAT_HOME>/lib
 
 catalina start
